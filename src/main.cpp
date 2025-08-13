@@ -1,6 +1,6 @@
-#include "SystemFactory.h"
-#include "IInput.h"
-#include "IWindow.h"
+#include "System/IInput.h"
+#include "System/IWindow.h"
+#include "System/SystemFactory.h"
 #include <iostream>
 #include <memory>
 
