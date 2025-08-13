@@ -16,7 +16,7 @@ target("CoreLib")
     add_includedirs("src", {public = true})
 
     if is_plat("windows") then
-        add_syslinks("user32", "gdi32")
+        add_syslinks("user32", "gdi32", "d3d11")
     end
 
 -- 2. Your main application now compiles main.cpp and links to the library

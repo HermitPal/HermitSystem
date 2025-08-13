@@ -1,46 +1,66 @@
 [
 {
   "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\SystemTests\\windows\\x64\\release\\tests\\System\\main.cpp.obj", "tests\\System\\main.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "tests\\System\\main.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Renderer\\DirectX12Renderer.cpp.obj", "src\\Renderer\\DirectX12Renderer.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\Renderer\\DirectX12Renderer.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Renderer\\RendererFactory.cpp.obj", "src\\Renderer\\RendererFactory.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\Renderer\\RendererFactory.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\SystemFactory.cpp.obj", "src\\System\\SystemFactory.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\System\\SystemFactory.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\Win32Input.cpp.obj", "src\\System\\Win32Input.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\System\\Win32Input.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\Win32Window.cpp.obj", "src\\System\\Win32Window.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\System\\Win32Window.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Math\\Math.cpp.obj", "src\\Math\\Math.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
-  "file": "src\\Math\\Math.cpp"
-},
-{
-  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\MathTests\\windows\\x64\\release\\tests\\Math\\main.cpp.obj", "tests\\Math\\main.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\MathTests\\windows\\x64\\release\\tests\\Math\\main.cpp.obj", "tests\\Math\\main.cpp"],
   "file": "tests\\Math\\main.cpp"
 },
 {
   "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
-  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\Game\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\include", "-imsvc", "D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\ATLMFC\\include", "-imsvc", "D:\\VisualStudio\\VC\\Auxiliary\\VS\\include", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\include\\10.0.22621.0\\ucrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\um", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\shared", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\winrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\10\\\\include\\10.0.22621.0\\\\cppwinrt", "-imsvc", "C:\\Program Files (x86)\\Windows Kits\\NETFXSDK\\4.8\\include\\um"],
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\MathTests\\windows\\x64\\release\\tests\\Math\\Vector2.cpp.obj", "tests\\Math\\Vector2.cpp"],
+  "file": "tests\\Math\\Vector2.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\MathTests\\windows\\x64\\release\\tests\\Math\\Vector3.cpp.obj", "tests\\Math\\Vector3.cpp"],
+  "file": "tests\\Math\\Vector3.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\Game\\windows\\x64\\release\\src\\main.cpp.obj", "src\\main.cpp"],
   "file": "src\\main.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/IC:\\Users\\Andrew\\AppData\\Local\\.xmake\\packages\\g\\gtest\\v1.17.0\\a63119b25dfe418595447ed1116f017c\\include", "/Fobuild\\.objs\\SystemTests\\windows\\x64\\release\\tests\\System\\main.cpp.obj", "tests\\System\\main.cpp"],
+  "file": "tests\\System\\main.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Renderer\\DirectX11Renderer.cpp.obj", "src\\Renderer\\DirectX11Renderer.cpp"],
+  "file": "src\\Renderer\\DirectX11Renderer.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Renderer\\DirectX12Renderer.cpp.obj", "src\\Renderer\\DirectX12Renderer.cpp"],
+  "file": "src\\Renderer\\DirectX12Renderer.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Renderer\\RendererFactory.cpp.obj", "src\\Renderer\\RendererFactory.cpp"],
+  "file": "src\\Renderer\\RendererFactory.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\SystemFactory.cpp.obj", "src\\System\\SystemFactory.cpp"],
+  "file": "src\\System\\SystemFactory.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\Win32Input.cpp.obj", "src\\System\\Win32Input.cpp"],
+  "file": "src\\System\\Win32Input.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\System\\Win32Window.cpp.obj", "src\\System\\Win32Window.cpp"],
+  "file": "src\\System\\Win32Window.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Math\\Vector2.cpp.obj", "src\\Math\\Vector2.cpp"],
+  "file": "src\\Math\\Vector2.cpp"
+},
+{
+  "directory": "c:\\Users\\Andrew\\Desktop\\Aug",
+  "arguments": ["D:\\VisualStudio\\VC\\Tools\\MSVC\\14.43.34808\\bin\\HostX64\\x64\\cl.exe", "/c", "/nologo", "/MD", "/std:c++17", "/Isrc", "/EHsc", "/Fobuild\\.objs\\CoreLib\\windows\\x64\\release\\src\\Math\\Vector3.cpp.obj", "src\\Math\\Vector3.cpp"],
+  "file": "src\\Math\\Vector3.cpp"
 }]

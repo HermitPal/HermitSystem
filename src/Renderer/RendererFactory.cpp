@@ -2,10 +2,12 @@
 #include <iostream>
 
 #ifdef _WIN32
+#include "DirectX11Renderer.h"
 #include "DirectX12Renderer.h"
 #include <d3d12.h>
 #include <windows.h>
 #include <wrl/client.h>
+
 
 #endif
 
@@ -77,8 +79,8 @@ RendererAPI RendererFactory::GetBestAvailableAPI()
     if (IsWindows())
     {
         // Windows: Prefer DirectX 12, then DirectX 11, then Vulkan, then OpenGL
-        if (IsDirectX12Available())
-            return RendererAPI::DirectX12;
+        // if (IsDirectX12Available())
+        //     return RendererAPI::DirectX12;
         if (IsDirectX11Available())
             return RendererAPI::DirectX11;
         if (IsVulkanAvailable())
@@ -134,9 +136,23 @@ const char* RendererFactory::GetAPIName(RendererAPI api)
 RendererPtr RendererFactory::CreateDirectX11Renderer()
 {
 #ifdef _WIN32
-    // TODO: Implement DirectX 11 renderer
-    std::cerr << "DirectX 11 renderer not implemented yet" << std::endl;
-    return nullptr;
+    if (!IsDirectX11Available())
+    {
+        std::cerr << "DirectX 11 is not available on this system" << std::endl;
+        return nullptr;
+    }
+
+    try
+    {
+        auto renderer = std::make_unique<DirectX11Renderer>();
+        std::cout << "Created DirectX 11 renderer" << std::endl;
+        return renderer;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << "Failed to create DirectX 11 renderer: " << e.what() << std::endl;
+        return nullptr;
+    }
 #else
     std::cerr << "DirectX 11 is not available on this platform" << std::endl;
     return nullptr;
