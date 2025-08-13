@@ -41,7 +41,15 @@ target("MathTests")
     add_packages("gtest")
     add_rules("test")
 
--- 5. Define the custom rule that tells xmake how to run our tests
+-- 5. Define the test target for the Renderer library
+target("RendererTests")
+    set_kind("binary")
+    add_files("tests/Renderer/*.cpp") -- Point to Renderer test files
+    add_deps("CoreLib")
+    add_packages("gtest")
+    add_rules("test")
+
+-- 6. Define the custom rule that tells xmake how to run our tests
 rule("test")
     on_run(function(target)
         print("Executing test: %s", target:name())
