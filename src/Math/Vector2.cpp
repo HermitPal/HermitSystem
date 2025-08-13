@@ -1,4 +1,5 @@
 #include "Vector2.h"
+
 #include <cmath>
 
 namespace Math
@@ -175,7 +176,7 @@ Vector2 Vector2::Project(const Vector2& a, const Vector2& b)
 {
     float dot = Dot(a, b);
     float magSq = b.MagnitudeSquared();
-    if (magSq > std::numeric_limits<float>::epsilon())
+    if (magSq > 0.0f)
     {
         return b * (dot / magSq);
     }
