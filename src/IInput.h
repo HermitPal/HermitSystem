@@ -7,6 +7,7 @@
 using WindowHandle = void*;
 
 // Key codes (can be extended based on platform needs)
+// clang-format off
 enum class Key {
     Unknown = 0,
     
@@ -48,9 +49,11 @@ enum class Key {
     MouseRight = 257,
     MouseMiddle = 258
 };
+// clang-format on
 
 // Mouse button enumeration
-enum class MouseButton {
+enum class MouseButton
+{
     Left = 0,
     Right = 1,
     Middle = 2
@@ -64,12 +67,13 @@ using MouseScrollCallback = std::function<void(int delta)>;
 
 /**
  * IInput - Abstract interface for input handling
- * 
+ *
  * This interface provides platform-independent input functionality.
  * It supports both polling (IsKeyDown) and event-driven (callbacks) input handling.
  */
-class IInput {
-public:
+class IInput
+{
+  public:
     virtual ~IInput() = default;
 
     // Initialization - called by the window after it has a valid handle
@@ -113,10 +117,10 @@ public:
     // Input state management
     virtual void ResetInputState() = 0;
 
-protected:
+  protected:
     // Platform-specific message processing - called by window's message handler
     virtual void ProcessMessage(unsigned int message, uintptr_t wParam, intptr_t lParam) = 0;
-    
+
     // Friend class to allow window to call ProcessMessage
     friend class Win32Window;
 };
