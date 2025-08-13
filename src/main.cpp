@@ -1,3 +1,5 @@
+#include "Renderer/IRenderer.h"
+#include "Renderer/RendererFactory.h"
 #include "System/IInput.h"
 #include "System/IWindow.h"
 #include "System/SystemFactory.h"
@@ -11,6 +13,7 @@
 
 // Use the system namespace to avoid qualifying every type
 using namespace Systsem;
+using namespace Renderer;
 
 int main()
 {
@@ -18,7 +21,7 @@ int main()
     {
         // Step 1: Configure the window
         WindowConfig config;
-        config.title = "Systsem Application";
+        config.title = "Systsem Application with Renderer";
         config.width = 1024;
         config.height = 768;
         config.resizable = true;
@@ -27,7 +30,6 @@ int main()
         config.posY = 0;
 
         // Step 2: Create the window and input system using the factory
-        // This abstracts away the platform-specific creation of Win32Window, etc.
         auto window = SystemFactory::CreateApplicationWindow(config);
         if (!window)
         {
@@ -35,8 +37,6 @@ int main()
             return -1;
         }
 
-        // Step 3: Get the input system from the window
-        // The factory ensures this is the correct and corresponding input system.
         auto input = window->GetInput();
         if (!input)
         {
@@ -44,10 +44,29 @@ int main()
             return -1;
         }
 
+        // Step 3: Create and initialize the renderer
+        auto renderer = RendererFactory::CreateRenderer();
+        if (!renderer)
+        {
+            std::cerr << "Failed to create renderer!" << std::endl;
+            return -1;
+        }
+
+        // Initialize the renderer with the native window handle
+        if (!renderer->Initialize(window->GetNativeHandle(), config.width, config.height))
+        {
+            std::cerr << "Failed to initialize renderer!" << std::endl;
+            return -1;
+        }
+
+        std::cout << "Renderer initialized: " << renderer->GetRendererName()
+                  << " " << renderer->GetVersion() << std::endl;
+
         // Step 4: Set up event callbacks
-        window->SetResizeCallback([](int width, int height) {
-            std::cout << "Window resized to: " << width << "x" << height
-                      << std::endl;
+        window->SetResizeCallback([&renderer](int width, int height) {
+            std::cout << "Window resized to: " << width << "x" << height << std::endl;
+            // Notify renderer of resize
+            renderer->OnResize(static_cast<uint32_t>(width), static_cast<uint32_t>(height));
         });
 
         window->SetCloseCallback(
@@ -76,24 +95,21 @@ int main()
                           << ", " << y << ")" << std::endl;
             });
 
-        input->SetMouseMoveCallback([](int x, int y) {
-            // Uncomment to see mouse movement (will be very verbose)
-            // std::cout << "Mouse moved to: (" << x << ", " << y << ")" <<
-            // std::endl;
-        });
-
         // Step 6: Show the window
         window->Show();
 
-        // Step 7: Main application loop
+        // Step 7: Main application loop with rendering
         std::cout << "Application started. Press Escape to exit." << std::endl;
         std::cout << "Controls:" << std::endl;
         std::cout << "  - WASD keys for movement input demonstration" << std::endl;
-        std::cout << "  - Mouse buttons and movement for mouse input demonstration"
-                  << std::endl;
+        std::cout << "  - Mouse buttons and movement for mouse input demonstration" << std::endl;
+        std::cout << "  - R key to change clear color" << std::endl;
         std::cout << "  - Escape to exit" << std::endl;
 
         bool running = true;
+        ClearColor clearColor = {0.2f, 0.3f, 0.4f, 1.0f}; // Nice blue-grey color
+        float colorTime = 0.0f;
+
         while (running && !window->ShouldClose())
         {
             // Update window (processes messages and updates input)
@@ -102,31 +118,69 @@ int main()
             // Example: Polling-based input checking
             if (input->IsKeyDown(Key::W))
             {
-                // std::cout << "W key held down (moving forward)" << std::endl;
+                // Move forward logic here
             }
             if (input->IsKeyDown(Key::S))
             {
-                // std::cout << "S key held down (moving backward)" << std::endl;
+                // Move backward logic here
             }
             if (input->IsKeyDown(Key::A))
             {
-                // std::cout << "A key held down (moving left)" << std::endl;
+                // Move left logic here
             }
             if (input->IsKeyDown(Key::D))
             {
-                // std::cout << "D key held down (moving right)" << std::endl;
+                // Move right logic here
             }
 
             if (input->WasKeyPressed(Key::Space))
             {
-                std::cout << "Space bar was pressed this frame (jump action)"
-                          << std::endl;
+                std::cout << "Space bar was pressed this frame (jump action)" << std::endl;
+            }
+
+            // Color animation with R key
+            if (input->WasKeyPressed(Key::R))
+            {
+                std::cout << "Changing clear color..." << std::endl;
+                colorTime = 0.0f; // Reset animation
             }
 
             // Exit condition
             if (input->WasKeyPressed(Key::Escape))
             {
                 running = false;
+            }
+
+            // Animate clear color
+            colorTime += 0.016f; // Assume ~60fps
+            clearColor.r = 0.5f + 0.3f * sin(colorTime);
+            clearColor.g = 0.5f + 0.3f * sin(colorTime * 1.3f);
+            clearColor.b = 0.5f + 0.3f * sin(colorTime * 0.7f);
+
+            // RENDERING
+            renderer->BeginFrame();
+
+            // Clear the screen with animated color
+            renderer->Clear(clearColor);
+
+            // Set viewport to full window
+            renderer->SetViewport(0, 0, renderer->GetBackBufferWidth(), renderer->GetBackBufferHeight());
+
+            // TODO: Add your actual rendering calls here
+            // renderer->DrawMesh(mesh);
+            // renderer->DrawSprite(sprite);
+            // etc.
+
+            renderer->EndFrame();
+            renderer->Present();
+
+            // Print stats occasionally
+            static int frameCounter = 0;
+            if (++frameCounter % 300 == 0) // Every ~5 seconds at 60fps
+            {
+                auto stats = renderer->GetStats();
+                std::cout << "Renderer Stats - Frames: " << stats.frameCount
+                          << ", Frame Time: " << stats.frameTime << "ms" << std::endl;
             }
 
 // Small sleep to prevent 100% CPU usage
@@ -139,8 +193,9 @@ int main()
         }
 
         // Step 8: Cleanup
-        // The unique_ptr for the window will handle shutdown and destruction
-        // automatically when it goes out of scope.
+        std::cout << "Shutting down renderer..." << std::endl;
+        renderer->Shutdown();
+
         std::cout << "Shutting down..." << std::endl;
     }
     catch (const std::exception& e)
