@@ -1,10 +1,10 @@
-# `Systsem` Namespace Architecture
+# `System` Namespace Architecture
 
-This document outlines the architecture of the `Systsem` namespace, a library designed to provide a platform-agnostic interface for creating and managing application windows and handling user input.
+This document outlines the architecture of the `System` namespace, a library designed to provide a platform-agnostic interface for creating and managing application windows and handling user input.
 
 ## Core Philosophy
 
-The primary goal of the `Systsem` namespace is to decouple the main application logic from the underlying operating system's specifics. This is achieved through a combination of interface-based design and the factory pattern, allowing developers to write their application code once and have it run on multiple platforms (e.g., Windows, Linux, macOS) by simply linking against the correct platform-specific implementation.
+The primary goal of the `System` namespace is to decouple the main application logic from the underlying operating system's specifics. This is achieved through a combination of interface-based design and the factory pattern, allowing developers to write their application code once and have it run on multiple platforms (e.g., Windows, Linux, macOS) by simply linking against the correct platform-specific implementation.
 
 ## Architecture Overview
 
@@ -68,11 +68,11 @@ The architecture is composed of three main parts:
 
 ## How to Use
 
-The client application (in `main.cpp`) interacts with the `Systsem` library as follows:
+The client application (in `main.cpp`) interacts with the `System` library as follows:
 
 1.  Includes the necessary headers: `SystemFactory.h`, `IWindow.h`, `IInput.h`.
 2.  Creates a `WindowConfig` struct to define the desired window properties.
-3.  Calls `Systsem::SystemFactory::CreateApplicationWindow(config)` to get a `std::unique_ptr<IWindow>`.
+3.  Calls `System::SystemFactory::CreateApplicationWindow(config)` to get a `std::unique_ptr<IWindow>`.
 4.  Retrieves the associated input system via `window->GetInput()`.
 5.  Programs the rest of the application using only the `IWindow` and `IInput` interfaces.
 

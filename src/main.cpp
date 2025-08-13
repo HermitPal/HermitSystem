@@ -12,7 +12,7 @@
 #endif
 
 // Use the system namespace to avoid qualifying every type
-using namespace Systsem;
+using namespace System;
 using namespace Renderer;
 
 int main()
@@ -21,7 +21,7 @@ int main()
     {
         // Step 1: Configure the window
         WindowConfig config;
-        config.title = "Systsem Application with Renderer";
+        config.title = "System Application with Renderer";
         config.width = 1024;
         config.height = 768;
         config.resizable = true;
