@@ -53,6 +53,19 @@ class DirectX12Renderer : public IRenderer
 
     void WaitForGPU() override;
 
+    BufferHandle CreateBuffer(BufferType type, BufferUsage usage, uint32_t size, const void* initialData = nullptr) override;
+    void DestroyBuffer(BufferHandle buffer) override;
+    void UpdateBuffer(BufferHandle buffer, uint32_t offset, uint32_t size, const void* data) override;
+
+    void SetVertexBuffer(BufferHandle buffer, uint32_t stride, uint32_t offset = 0) override;
+    void SetIndexBuffer(BufferHandle buffer, uint32_t offset = 0) override;
+    void SetPrimitiveTopology(PrimitiveTopology topology) override;
+    void DrawIndexed(uint32_t indexCount, uint32_t startIndexLocation = 0, int32_t baseVertexLocation = 0) override;
+
+    ShaderHandle CreateColorShader() override;
+    void DestroyShader(ShaderHandle shader) override;
+    void SetShader(ShaderHandle shader) override;
+
   private:
     // DirectX 12 specific methods
     bool CreateDevice();

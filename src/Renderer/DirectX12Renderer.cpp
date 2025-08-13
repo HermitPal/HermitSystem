@@ -288,6 +288,70 @@ void DirectX12Renderer::WaitForGPU()
     }
 }
 
+// Dummy implementations for new IRenderer methods
+BufferHandle DirectX12Renderer::CreateBuffer(BufferType type, BufferUsage usage, uint32_t size, const void* initialData)
+{
+    std::cout << "DirectX12Renderer: CreateBuffer (Dummy) called" << std::endl;
+    return nullptr; // Dummy implementation
+}
+
+void DirectX12Renderer::DestroyBuffer(BufferHandle buffer)
+{
+    std::cout << "DirectX12Renderer: DestroyBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::UpdateBuffer(BufferHandle buffer, uint32_t offset, uint32_t size, const void* data)
+{
+    std::cout << "DirectX12Renderer: UpdateBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::SetVertexBuffer(BufferHandle buffer, uint32_t stride, uint32_t offset)
+{
+    std::cout << "DirectX12Renderer: SetVertexBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::SetIndexBuffer(BufferHandle buffer, uint32_t offset)
+{
+    std::cout << "DirectX12Renderer: SetIndexBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::SetPrimitiveTopology(PrimitiveTopology topology)
+{
+    std::cout << "DirectX12Renderer: SetPrimitiveTopology (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::DrawIndexed(uint32_t indexCount, uint32_t startIndexLocation, int32_t baseVertexLocation)
+{
+    std::cout << "DirectX12Renderer: DrawIndexed (Dummy) called" << std::endl;
+    // Dummy implementation
+    m_stats.drawCalls++;
+    m_stats.triangles += indexCount / 3; // Assuming triangle list
+    m_stats.vertices += indexCount; // Assuming each index refers to a vertex
+}
+
+ShaderHandle DirectX12Renderer::CreateColorShader()
+{
+    std::cout << "DirectX12Renderer: CreateColorShader (Dummy) called" << std::endl;
+    return nullptr; // Dummy implementation
+}
+
+void DirectX12Renderer::DestroyShader(ShaderHandle shader)
+{
+    std::cout << "DirectX12Renderer: DestroyShader (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX12Renderer::SetShader(ShaderHandle shader)
+{
+    std::cout << "DirectX12Renderer: SetShader (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
 // Private implementation methods
 bool DirectX12Renderer::CreateDevice()
 {

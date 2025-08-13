@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <memory>
+#include "RendererResources.h"
 
 namespace Renderer
 {
@@ -57,6 +58,22 @@ class IRenderer
 
     // Resource management (basic interface - can be extended)
     virtual void WaitForGPU() = 0;
+
+    // Resource creation and management
+    virtual BufferHandle CreateBuffer(BufferType type, BufferUsage usage, uint32_t size, const void* initialData = nullptr) = 0;
+    virtual void DestroyBuffer(BufferHandle buffer) = 0;
+    virtual void UpdateBuffer(BufferHandle buffer, uint32_t offset, uint32_t size, const void* data) = 0;
+
+    // Drawing operations
+    virtual void SetVertexBuffer(BufferHandle buffer, uint32_t stride, uint32_t offset = 0) = 0;
+    virtual void SetIndexBuffer(BufferHandle buffer, uint32_t offset = 0) = 0;
+    virtual void SetPrimitiveTopology(PrimitiveTopology topology) = 0;
+    virtual void DrawIndexed(uint32_t indexCount, uint32_t startIndexLocation = 0, int32_t baseVertexLocation = 0) = 0;
+
+    // Basic shader management (for now, just a simple color shader concept)
+    virtual ShaderHandle CreateColorShader() = 0;
+    virtual void DestroyShader(ShaderHandle shader) = 0;
+    virtual void SetShader(ShaderHandle shader) = 0;
 };
 
 using RendererPtr = std::unique_ptr<IRenderer>;

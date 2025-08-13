@@ -2,6 +2,7 @@
 #include "Renderer/RendererFactory.h"
 #include "System/IWindow.h"
 #include "System/SystemFactory.h"
+#include "Renderer/RendererResources.h" // Added this include
 #include <gtest/gtest.h>
 #include <memory>
 
@@ -192,6 +193,61 @@ TEST_F(RendererTest, MultipleRendererInstances)
         renderer1->Shutdown();
     if (renderer2)
         renderer2->Shutdown();
+}
+
+// Test for drawing a simple triangle (Hello Triangle)
+TEST_F(RendererTest, HelloTriangle)
+{
+    renderer = RendererFactory::CreateRenderer();
+    ASSERT_NE(renderer, nullptr);
+
+    int width, height;
+    window->GetSize(width, height);
+
+    ASSERT_TRUE(renderer->Initialize(window->GetNativeHandle(), width, height));
+
+    // Define triangle vertices (CPU-side)
+    std::vector<Vertex> vertices = {
+        {{0.0f, 0.5f, 0.0f}, {1.0f, 0.0f, 0.0f, 1.0f}},   // Top (Red)
+        {{0.5f, -0.5f, 0.0f}, {0.0f, 1.0f, 0.0f, 1.0f}},  // Right (Green)
+        {{-0.5f, -0.5f, 0.0f}, {0.0f, 0.0f, 1.0f, 1.0f}} // Left (Blue)
+    };
+
+    // Define triangle indices
+    std::vector<uint32_t> indices = {0, 1, 2};
+
+    // Create vertex buffer
+    BufferHandle vertexBuffer = renderer->CreateBuffer(BufferType::VertexBuffer, BufferUsage::Immutable, sizeof(Vertex) * vertices.size(), vertices.data());
+    ASSERT_NE(vertexBuffer, nullptr) << "Failed to create vertex buffer";
+
+    // Create index buffer
+    BufferHandle indexBuffer = renderer->CreateBuffer(BufferType::IndexBuffer, BufferUsage::Immutable, sizeof(uint32_t) * indices.size(), indices.data());
+    ASSERT_NE(indexBuffer, nullptr) << "Failed to create index buffer";
+
+    // Create a simple color shader
+    ShaderHandle colorShader = renderer->CreateColorShader();
+    ASSERT_NE(colorShader, nullptr) << "Failed to create color shader";
+
+    // Render a single frame with the triangle
+    ASSERT_NO_THROW({
+        renderer->BeginFrame();
+        renderer->Clear({0.1f, 0.1f, 0.1f, 1.0f});
+        renderer->SetViewport(0, 0, renderer->GetBackBufferWidth(), renderer->GetBackBufferHeight());
+
+        renderer->SetShader(colorShader);
+        renderer->SetVertexBuffer(vertexBuffer, sizeof(Vertex));
+        renderer->SetIndexBuffer(indexBuffer);
+        renderer->SetPrimitiveTopology(PrimitiveTopology::TriangleList);
+        renderer->DrawIndexed(static_cast<uint32_t>(indices.size()));
+
+        renderer->EndFrame();
+        renderer->Present();
+    }) << "Hello Triangle render cycle should not throw exceptions";
+
+    // Clean up resources
+    renderer->DestroyBuffer(vertexBuffer);
+    renderer->DestroyBuffer(indexBuffer);
+    renderer->DestroyShader(colorShader);
 }
 
 // The main function that runs all the tests

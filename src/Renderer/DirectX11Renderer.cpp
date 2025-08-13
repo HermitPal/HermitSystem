@@ -264,6 +264,70 @@ void DirectX11Renderer::WaitForGPU()
     // The flush ensures all commands are submitted to the GPU
 }
 
+// Dummy implementations for new IRenderer methods
+BufferHandle DirectX11Renderer::CreateBuffer(BufferType type, BufferUsage usage, uint32_t size, const void* initialData)
+{
+    std::cout << "DirectX11Renderer: CreateBuffer (Dummy) called" << std::endl;
+    return nullptr; // Dummy implementation
+}
+
+void DirectX11Renderer::DestroyBuffer(BufferHandle buffer)
+{
+    std::cout << "DirectX11Renderer: DestroyBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::UpdateBuffer(BufferHandle buffer, uint32_t offset, uint32_t size, const void* data)
+{
+    std::cout << "DirectX11Renderer: UpdateBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::SetVertexBuffer(BufferHandle buffer, uint32_t stride, uint32_t offset)
+{
+    std::cout << "DirectX11Renderer: SetVertexBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::SetIndexBuffer(BufferHandle buffer, uint32_t offset)
+{
+    std::cout << "DirectX11Renderer: SetIndexBuffer (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::SetPrimitiveTopology(PrimitiveTopology topology)
+{
+    std::cout << "DirectX11Renderer: SetPrimitiveTopology (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::DrawIndexed(uint32_t indexCount, uint32_t startIndexLocation, int32_t baseVertexLocation)
+{
+    std::cout << "DirectX11Renderer: DrawIndexed (Dummy) called" << std::endl;
+    // Dummy implementation
+    m_stats.drawCalls++;
+    m_stats.triangles += indexCount / 3; // Assuming triangle list
+    m_stats.vertices += indexCount; // Assuming each index refers to a vertex
+}
+
+ShaderHandle DirectX11Renderer::CreateColorShader()
+{
+    std::cout << "DirectX11Renderer: CreateColorShader (Dummy) called" << std::endl;
+    return nullptr; // Dummy implementation
+}
+
+void DirectX11Renderer::DestroyShader(ShaderHandle shader)
+{
+    std::cout << "DirectX11Renderer: DestroyShader (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
+void DirectX11Renderer::SetShader(ShaderHandle shader)
+{
+    std::cout << "DirectX11Renderer: SetShader (Dummy) called" << std::endl;
+    // Dummy implementation
+}
+
 // Private implementation methods
 
 bool DirectX11Renderer::CreateDevice()

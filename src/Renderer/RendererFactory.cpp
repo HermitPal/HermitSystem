@@ -8,7 +8,6 @@
 #include <windows.h>
 #include <wrl/client.h>
 
-
 #endif
 
 namespace Renderer
