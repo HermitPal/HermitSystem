@@ -1,5 +1,6 @@
 #include "Vector2.h"
 
+#include <algorithm>
 #include <cmath>
 
 namespace Math
@@ -154,21 +155,14 @@ Vector2 Vector2::Lerp(const Vector2& a, const Vector2& b, float t)
 
 Vector2 Vector2::LerpClamped(const Vector2& a, const Vector2& b, float t)
 {
-    if (t < 0.0f)
-        t = 0.0f;
-    if (t > 1.0f)
-        t = 1.0f;
+    t = std::clamp(t, 0.0f, 1.0f);
     return Lerp(a, b, t);
 }
 
 float Vector2::Angle(const Vector2& a, const Vector2& b)
 {
     float dot = Dot(a.Normalized(), b.Normalized());
-    // Clamp to handle floating point errors
-    if (dot < -1.0f)
-        dot = -1.0f;
-    if (dot > 1.0f)
-        dot = 1.0f;
+    dot = std::clamp(dot, -1.0f, 1.0f);
     return std::acos(dot);
 }
 
