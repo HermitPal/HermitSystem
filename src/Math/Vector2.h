@@ -136,7 +136,7 @@ class Vector2
     void Normalize()
     {
         float mag = Magnitude();
-        if (mag > std::numeric_limits<float>::epsilon())
+        if (mag > 1e-12f)
         {
             x /= mag;
             y /= mag;
