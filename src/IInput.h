@@ -116,11 +116,4 @@ class IInput
 
     // Input state management
     virtual void ResetInputState() = 0;
-
-  protected:
-    // Platform-specific message processing - called by window's message handler
-    virtual void ProcessMessage(unsigned int message, uintptr_t wParam, intptr_t lParam) = 0;
-
-    // Friend class to allow window to call ProcessMessage
-    friend class Win32Window;
 };

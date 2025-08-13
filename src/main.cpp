@@ -1,20 +1,19 @@
-#include "Win32Input.h"
-#include "Win32Window.h"
+#include "SystemFactory.h"
+#include "IInput.h"
+#include "IWindow.h"
 #include <iostream>
 #include <memory>
+
+// For Sleep()
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 
 int main()
 {
     try
     {
-        // Step 1: Create the input system implementation
-        auto input = std::make_shared<Win32Input>();
-
-        // Step 2: Create the window with dependency injection
-        // The window constructor requires the input system
-        auto window = std::make_unique<Win32Window>(input);
-
-        // Step 3: Configure the window
+        // Step 1: Configure the window
         WindowConfig config;
         config.title = "Win32 Application";
         config.width = 1024;
@@ -24,17 +23,28 @@ int main()
         config.posX = 0;
         config.posY = 0;
 
-        // Step 4: Initialize the window (this will also initialize the input
-        // system)
-        if (!window->Initialize(config))
+        // Step 2: Create the window and input system using the factory
+        // This abstracts away the platform-specific creation of Win32Window, etc.
+        auto window = SystemFactory::CreateApplicationWindow(config);
+        if (!window)
         {
-            std::cerr << "Failed to initialize window!" << std::endl;
+            std::cerr << "Failed to create application window!" << std::endl;
             return -1;
         }
 
-        // Step 5: Set up event callbacks
+        // Step 3: Get the input system from the window
+        // The factory ensures this is the correct and corresponding input system.
+        auto input = window->GetInput();
+        if (!input)
+        {
+            std::cerr << "Failed to get input system from window!" << std::endl;
+            return -1;
+        }
+
+        // Step 4: Set up event callbacks
         window->SetResizeCallback([](int width, int height) {
-            std::cout << "Window resized to: " << width << "x" << height << std::endl;
+            std::cout << "Window resized to: " << width << "x" << height
+                      << std::endl;
         });
 
         window->SetCloseCallback(
@@ -45,19 +55,11 @@ int main()
                       << std::endl;
         });
 
-        // Step 6: Set up input callbacks
+        // Step 5: Set up input callbacks
         input->SetKeyCallback([](Key key, bool pressed) {
             if (pressed)
             {
                 std::cout << "Key pressed: " << static_cast<int>(key) << std::endl;
-
-                // Example: Exit on Escape key
-                if (key == Key::Escape)
-                {
-                    std::cout << "Escape pressed - requesting window close" << std::endl;
-                    // Note: In a real application, you'd have a way to signal the main
-                    // loop
-                }
             }
         });
 
@@ -73,13 +75,14 @@ int main()
 
         input->SetMouseMoveCallback([](int x, int y) {
             // Uncomment to see mouse movement (will be very verbose)
-            // std::cout << "Mouse moved to: (" << x << ", " << y << ")" << std::endl;
+            // std::cout << "Mouse moved to: (" << x << ", " << y << ")" <<
+            // std::endl;
         });
 
-        // Step 7: Show the window
+        // Step 6: Show the window
         window->Show();
 
-        // Step 8: Main application loop
+        // Step 7: Main application loop
         std::cout << "Application started. Press Escape to exit." << std::endl;
         std::cout << "Controls:" << std::endl;
         std::cout << "  - WASD keys for movement input demonstration" << std::endl;
@@ -94,60 +97,27 @@ int main()
             window->Update();
 
             // Example: Polling-based input checking
-            // Check for WASD keys (common movement keys)
             if (input->IsKeyDown(Key::W))
             {
-                // Move forward logic would go here
                 // std::cout << "W key held down (moving forward)" << std::endl;
             }
             if (input->IsKeyDown(Key::S))
             {
-                // Move backward logic would go here
                 // std::cout << "S key held down (moving backward)" << std::endl;
             }
             if (input->IsKeyDown(Key::A))
             {
-                // Move left logic would go here
                 // std::cout << "A key held down (moving left)" << std::endl;
             }
             if (input->IsKeyDown(Key::D))
             {
-                // Move right logic would go here
                 // std::cout << "D key held down (moving right)" << std::endl;
             }
 
-            // Example: Check for single-frame key presses
             if (input->WasKeyPressed(Key::Space))
             {
                 std::cout << "Space bar was pressed this frame (jump action)"
                           << std::endl;
-            }
-
-            // Example: Mouse input polling
-            if (input->IsMouseButtonDown(MouseButton::Left))
-            {
-                int mouseX, mouseY;
-                input->GetMousePosition(mouseX, mouseY);
-                // Continuous action while mouse button is held
-                // std::cout << "Left mouse button held at: (" << mouseX << ", " <<
-                // mouseY << ")" << std::endl;
-            }
-
-            // Check mouse delta for camera/look movement
-            int deltaX, deltaY;
-            input->GetMouseDelta(deltaX, deltaY);
-            if (deltaX != 0 || deltaY != 0)
-            {
-                // Camera rotation logic would go here
-                // std::cout << "Mouse delta: (" << deltaX << ", " << deltaY << ")" <<
-                // std::endl;
-            }
-
-            // Check for mouse wheel scrolling
-            int wheelDelta = input->GetMouseWheelDelta();
-            if (wheelDelta != 0)
-            {
-                std::cout << "Mouse wheel scrolled: " << wheelDelta << std::endl;
             }
 
             // Exit condition
@@ -156,14 +126,19 @@ int main()
                 running = false;
             }
 
-            // Small sleep to prevent 100% CPU usage (in a real app, you'd have proper
-            // frame timing)
+            // Small sleep to prevent 100% CPU usage
+#ifdef _WIN32
             Sleep(1);
+#else
+            // On other platforms, you might use usleep
+            // usleep(1000);
+#endif
         }
 
-        // Step 9: Cleanup
+        // Step 8: Cleanup
+        // The unique_ptr for the window will handle shutdown and destruction
+        // automatically when it goes out of scope.
         std::cout << "Shutting down..." << std::endl;
-        window->Shutdown();
     }
     catch (const std::exception& e)
     {

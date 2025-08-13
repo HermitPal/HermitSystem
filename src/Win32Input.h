@@ -57,10 +57,10 @@ class Win32Input : public IInput
     // Input state management
     void ResetInputState() override;
 
+    // Platform-specific message processing - not part of the interface
+    void ProcessMessage(unsigned int message, uintptr_t wParam, intptr_t lParam);
+
   protected:
-    // Platform-specific message processing
-    void ProcessMessage(unsigned int message, uintptr_t wParam,
-                        intptr_t lParam) override;
 
   private:
     // Constants

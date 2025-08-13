@@ -1,4 +1,5 @@
 #include "Win32Window.h"
+#include "Win32Input.h" // For dynamic_pointer_cast
 #include "IInput.h"
 #include <iostream>
 #include <stdexcept>
@@ -367,8 +368,10 @@ LRESULT Win32Window::WindowProc(HWND hwnd, UINT message, WPARAM wParam,
         return 0; // Return 0 to continue window creation
     }
 
-    // Forward input messages to the input system
-    if (m_input)
+    // Forward input messages to the input system by casting to the concrete Win32
+    // implementation.
+    // This avoids polluting the IInput interface with platform-specific methods.
+    if (auto win32Input = std::dynamic_pointer_cast<Win32Input>(m_input))
     {
         switch (message)
         {
@@ -385,7 +388,7 @@ LRESULT Win32Window::WindowProc(HWND hwnd, UINT message, WPARAM wParam,
         case WM_MBUTTONUP:
         case WM_MOUSEMOVE:
         case WM_MOUSEWHEEL:
-            m_input->ProcessMessage(message, wParam, lParam);
+            win32Input->ProcessMessage(message, wParam, lParam);
             break;
         }
     }
