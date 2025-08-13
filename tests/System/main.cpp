@@ -56,7 +56,7 @@ TEST_F(SystemTest, FactoryCreatesWindowWithCorrectConfig)
     window = SystemFactory::CreateApplicationWindow(config);
 
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Don't call Initialize() - the factory should have done it already
 
     // Test that the window was created with the correct configuration
     EXPECT_EQ(window->GetTitle(), config.title);
@@ -74,8 +74,9 @@ TEST_F(SystemTest, WindowInitialization)
 
     ASSERT_NE(window, nullptr);
 
-    // Window should initialize successfully
-    EXPECT_TRUE(window->Initialize(config)) << "Window initialization should succeed";
+    // Window should already be initialized by the factory
+    // Trying to initialize again should return false (already initialized)
+    EXPECT_FALSE(window->Initialize(config)) << "Window should already be initialized by factory";
 
     // Window should not be closed initially
     EXPECT_FALSE(window->ShouldClose()) << "New window should not be marked for closing";
@@ -86,7 +87,7 @@ TEST_F(SystemTest, WindowProperties)
     window = SystemFactory::CreateApplicationWindow(config);
 
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Factory should have already initialized the window
 
     // Test property getters
     EXPECT_EQ(window->GetTitle(), "Test Window");
@@ -119,7 +120,7 @@ TEST_F(SystemTest, WindowVisibility)
     window = SystemFactory::CreateApplicationWindow(config);
 
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Window should already be initialized by factory
 
     // Window should be hidden by default
     EXPECT_FALSE(window->IsVisible()) << "Window should be hidden by default";
@@ -138,7 +139,7 @@ TEST_F(SystemTest, WindowNativeHandle)
     window = SystemFactory::CreateApplicationWindow(config);
 
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Window should already be initialized by factory
 
     // Native handle should be valid after initialization
     EXPECT_NE(window->GetNativeHandle(), nullptr) << "Native handle should be valid after initialization";
@@ -159,7 +160,7 @@ TEST_F(SystemTest, InputPollingInterface)
 {
     window = SystemFactory::CreateApplicationWindow(config);
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Window should already be initialized by factory
 
     auto input = window->GetInput();
     ASSERT_NE(input, nullptr);
@@ -179,7 +180,7 @@ TEST_F(SystemTest, InputCallbackInterface)
 {
     window = SystemFactory::CreateApplicationWindow(config);
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Window should already be initialized by factory
 
     auto input = window->GetInput();
     ASSERT_NE(input, nullptr);
@@ -206,7 +207,7 @@ TEST_F(SystemTest, WindowCallbacks)
 {
     window = SystemFactory::CreateApplicationWindow(config);
     ASSERT_NE(window, nullptr);
-    ASSERT_TRUE(window->Initialize(config));
+    // Window should already be initialized by factory
 
     bool resizeCallbackCalled = false;
     bool closeCallbackCalled = false;
@@ -240,7 +241,7 @@ TEST_F(SystemTest, InvalidConfigurations)
     // The factory might still create a window but with corrected dimensions,
     // or it might return nullptr depending on implementation
     // This test documents the expected behavior
-    if (window && window->Initialize(invalidConfig))
+    if (window)
     {
         int width, height;
         window->GetSize(width, height);
@@ -254,8 +255,9 @@ TEST_F(SystemTest, WindowLifecycle)
     window = SystemFactory::CreateApplicationWindow(config);
     ASSERT_NE(window, nullptr);
 
-    // Test full lifecycle
-    EXPECT_TRUE(window->Initialize(config)) << "Window should initialize";
+    // Factory should have already initialized the window
+    // Test that it's properly initialized
+    EXPECT_FALSE(window->ShouldClose()) << "Window should not be marked for closing initially";
 
     window->Show();
     EXPECT_TRUE(window->IsVisible()) << "Window should be visible";
@@ -297,8 +299,9 @@ TEST_F(SystemTest, MainApplicationFlow)
     auto input = window->GetInput();
     ASSERT_NE(input, nullptr);
 
-    // Step 3: Initialize
-    ASSERT_TRUE(window->Initialize(config));
+    // Step 3: Factory should have already initialized the window
+    // Verify it's properly initialized
+    EXPECT_NE(window->GetNativeHandle(), nullptr) << "Native handle should be valid";
 
     // Step 4: Set up callbacks (should not throw)
     EXPECT_NO_THROW(window->SetResizeCallback([](int w, int h) { /* resize handler */ }));

@@ -20,7 +20,7 @@ target("CoreLib")
     end
 
 -- 2. Your main application now compiles main.cpp and links to the library
-target("Aug")
+target("Game")
     set_kind("binary")
     add_files("src/main.cpp")
     add_deps("CoreLib")
