@@ -9,13 +9,16 @@
 #include <Windows.h>
 #endif
 
+// Use the system namespace to avoid qualifying every type
+using namespace Systsem;
+
 int main()
 {
     try
     {
         // Step 1: Configure the window
         WindowConfig config;
-        config.title = "Win32 Application";
+        config.title = "Systsem Application";
         config.width = 1024;
         config.height = 768;
         config.resizable = true;
@@ -126,7 +129,7 @@ int main()
                 running = false;
             }
 
-            // Small sleep to prevent 100% CPU usage
+// Small sleep to prevent 100% CPU usage
 #ifdef _WIN32
             Sleep(1);
 #else
