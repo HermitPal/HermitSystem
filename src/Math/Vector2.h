@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cmath>
 #include <limits>
 
 namespace Math
@@ -18,95 +17,29 @@ class Vector2
     float x, y;
 
     // Constructors
-    Vector2()
-        : x(0.0f), y(0.0f)
-    {
-    }
-    Vector2(float x, float y)
-        : x(x), y(y)
-    {
-    }
-    Vector2(const Vector2& other)
-        : x(other.x), y(other.y)
-    {
-    }
+    Vector2();
+    Vector2(float x, float y);
+    Vector2(const Vector2& other);
 
     // Assignment operator
-    Vector2& operator=(const Vector2& other)
-    {
-        if (this != &other)
-        {
-            x = other.x;
-            y = other.y;
-        }
-        return *this;
-    }
+    Vector2& operator=(const Vector2& other);
 
     // Arithmetic operators
-    Vector2 operator+(const Vector2& other) const
-    {
-        return Vector2(x + other.x, y + other.y);
-    }
-
-    Vector2 operator-(const Vector2& other) const
-    {
-        return Vector2(x - other.x, y - other.y);
-    }
-
-    Vector2 operator*(float scalar) const
-    {
-        return Vector2(x * scalar, y * scalar);
-    }
-
-    Vector2 operator/(float scalar) const
-    {
-        return Vector2(x / scalar, y / scalar);
-    }
-
-    Vector2 operator-() const
-    {
-        return Vector2(-x, -y);
-    }
+    Vector2 operator+(const Vector2& other) const;
+    Vector2 operator-(const Vector2& other) const;
+    Vector2 operator*(float scalar) const;
+    Vector2 operator/(float scalar) const;
+    Vector2 operator-() const;
 
     // Compound assignment operators
-    Vector2& operator+=(const Vector2& other)
-    {
-        x += other.x;
-        y += other.y;
-        return *this;
-    }
-
-    Vector2& operator-=(const Vector2& other)
-    {
-        x -= other.x;
-        y -= other.y;
-        return *this;
-    }
-
-    Vector2& operator*=(float scalar)
-    {
-        x *= scalar;
-        y *= scalar;
-        return *this;
-    }
-
-    Vector2& operator/=(float scalar)
-    {
-        x /= scalar;
-        y /= scalar;
-        return *this;
-    }
+    Vector2& operator+=(const Vector2& other);
+    Vector2& operator-=(const Vector2& other);
+    Vector2& operator*=(float scalar);
+    Vector2& operator/=(float scalar);
 
     // Comparison operators
-    bool operator==(const Vector2& other) const
-    {
-        return (x == other.x) && (y == other.y);
-    }
-
-    bool operator!=(const Vector2& other) const
-    {
-        return !(*this == other);
-    }
+    bool operator==(const Vector2& other) const;
+    bool operator!=(const Vector2& other) const;
 
     // Vector operations
 
@@ -114,46 +47,27 @@ class Vector2
      * @brief Calculate the magnitude (length) of the vector
      * @return The magnitude as a float
      */
-    float Magnitude() const
-    {
-        return std::sqrt(x * x + y * y);
-    }
+    float Magnitude() const;
 
     /**
      * @brief Calculate the squared magnitude of the vector
      * @return The squared magnitude as a float
      * @note More efficient than Magnitude() when you only need to compare lengths
      */
-    float MagnitudeSquared() const
-    {
-        return x * x + y * y;
-    }
+    float MagnitudeSquared() const;
 
     /**
      * @brief Normalize this vector in-place
      * @note If the vector has zero length, it remains unchanged
      */
-    void Normalize()
-    {
-        float mag = Magnitude();
-        if (mag > 1e-12f)
-        {
-            x /= mag;
-            y /= mag;
-        }
-    }
+    void Normalize();
 
     /**
      * @brief Return a normalized copy of this vector
      * @return A new Vector2 with unit length
      * @note If the vector has zero length, returns a zero vector
      */
-    Vector2 Normalized() const
-    {
-        Vector2 result(*this);
-        result.Normalize();
-        return result;
-    }
+    Vector2 Normalized() const;
 
     // Static utility functions
 
@@ -163,10 +77,7 @@ class Vector2
      * @param b Second vector
      * @return The dot product as a float
      */
-    static float Dot(const Vector2& a, const Vector2& b)
-    {
-        return a.x * b.x + a.y * b.y;
-    }
+    static float Dot(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Calculate the cross product of two vectors
@@ -174,10 +85,7 @@ class Vector2
      * @param b Second vector
      * @return The cross product as a float (z-component of the 3D cross product)
      */
-    static float Cross(const Vector2& a, const Vector2& b)
-    {
-        return a.x * b.y - a.y * b.x;
-    }
+    static float Cross(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Calculate the distance between two points
@@ -185,10 +93,7 @@ class Vector2
      * @param b Second point
      * @return The distance as a float
      */
-    static float Distance(const Vector2& a, const Vector2& b)
-    {
-        return (b - a).Magnitude();
-    }
+    static float Distance(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Calculate the squared distance between two points
@@ -197,10 +102,7 @@ class Vector2
      * @return The squared distance as a float
      * @note More efficient than Distance() when you only need to compare distances
      */
-    static float DistanceSquared(const Vector2& a, const Vector2& b)
-    {
-        return (b - a).MagnitudeSquared();
-    }
+    static float DistanceSquared(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Linear interpolation between two vectors
@@ -209,10 +111,7 @@ class Vector2
      * @param t Interpolation parameter (0.0 = a, 1.0 = b)
      * @return Interpolated vector
      */
-    static Vector2 Lerp(const Vector2& a, const Vector2& b, float t)
-    {
-        return a + (b - a) * t;
-    }
+    static Vector2 Lerp(const Vector2& a, const Vector2& b, float t);
 
     /**
      * @brief Clamp interpolation parameter and perform linear interpolation
@@ -221,14 +120,7 @@ class Vector2
      * @param t Interpolation parameter (clamped to [0,1])
      * @return Interpolated vector
      */
-    static Vector2 LerpClamped(const Vector2& a, const Vector2& b, float t)
-    {
-        if (t < 0.0f)
-            t = 0.0f;
-        if (t > 1.0f)
-            t = 1.0f;
-        return Lerp(a, b, t);
-    }
+    static Vector2 LerpClamped(const Vector2& a, const Vector2& b, float t);
 
     /**
      * @brief Calculate the angle between two vectors in radians
@@ -236,16 +128,7 @@ class Vector2
      * @param b Second vector
      * @return Angle in radians
      */
-    static float Angle(const Vector2& a, const Vector2& b)
-    {
-        float dot = Dot(a.Normalized(), b.Normalized());
-        // Clamp to handle floating point errors
-        if (dot < -1.0f)
-            dot = -1.0f;
-        if (dot > 1.0f)
-            dot = 1.0f;
-        return std::acos(dot);
-    }
+    static float Angle(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Project vector a onto vector b
@@ -253,16 +136,7 @@ class Vector2
      * @param b Vector to project onto
      * @return Projected vector
      */
-    static Vector2 Project(const Vector2& a, const Vector2& b)
-    {
-        float dot = Dot(a, b);
-        float magSq = b.MagnitudeSquared();
-        if (magSq > std::numeric_limits<float>::epsilon())
-        {
-            return b * (dot / magSq);
-        }
-        return Zero();
-    }
+    static Vector2 Project(const Vector2& a, const Vector2& b);
 
     /**
      * @brief Reflect vector a across normal n
@@ -270,42 +144,18 @@ class Vector2
      * @param n Normal vector (should be normalized)
      * @return Reflected vector
      */
-    static Vector2 Reflect(const Vector2& a, const Vector2& n)
-    {
-        return a - n * (2.0f * Dot(a, n));
-    }
+    static Vector2 Reflect(const Vector2& a, const Vector2& n);
 
     // Static constant vectors
-    static Vector2 Zero()
-    {
-        return Vector2(0.0f, 0.0f);
-    }
-    static Vector2 One()
-    {
-        return Vector2(1.0f, 1.0f);
-    }
-    static Vector2 Up()
-    {
-        return Vector2(0.0f, 1.0f);
-    }
-    static Vector2 Down()
-    {
-        return Vector2(0.0f, -1.0f);
-    }
-    static Vector2 Left()
-    {
-        return Vector2(-1.0f, 0.0f);
-    }
-    static Vector2 Right()
-    {
-        return Vector2(1.0f, 0.0f);
-    }
+    static Vector2 Zero();
+    static Vector2 One();
+    static Vector2 Up();
+    static Vector2 Down();
+    static Vector2 Left();
+    static Vector2 Right();
 };
 
 // Non-member operators for scalar multiplication (scalar * vector)
-inline Vector2 operator*(float scalar, const Vector2& vector)
-{
-    return vector * scalar;
-}
+Vector2 operator*(float scalar, const Vector2& vector);
 
 } // namespace Math
