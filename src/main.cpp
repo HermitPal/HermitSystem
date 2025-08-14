@@ -118,6 +118,7 @@ int main()
             // Example: Polling-based input checking
             if (input->IsKeyDown(Key::W))
             {
+                std::cout << "P";
                 // Move forward logic here
             }
             if (input->IsKeyDown(Key::S))
@@ -148,6 +149,7 @@ int main()
             // Exit condition
             if (input->WasKeyPressed(Key::Escape))
             {
+                std::cout << "ESCAPE";
                 running = false;
             }
 
